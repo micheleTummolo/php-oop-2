@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card_size {
+    width: 18rem;
+    height: 30rem;
+}
+
+.img_container {
+    width: 100%;
+    height: 60%;
+}
+
+.img_size {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    display: block;
+}
