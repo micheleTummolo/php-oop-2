@@ -22,24 +22,36 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
-<body>
+
+<header class="bg-info">
     <div class="container">
         <div class="row mb-4">
-            <div class="col">
-                <h1>
+            <div class="col py-1">
+                <h1 class="fw-bold">
                     Boolshop
                 </h1>
             </div>
         </div>
-        <div class="row d-flex justify-content-around">
+    </div>
+</header>
+<body>
+    <div class="container">
+        <div class="row mb-1">
+            <div class="col">
+                <h4>
+                   I nostri prodotti
+                </h4>
+            </div>
+        </div>
+        <div class="row d-flex flex-wrap">
             <?php foreach($products as $product) { ?>
-                <div class="col-3">
+                <div class="col-3 mb-4">
                     <div class="card card_size">
-                        <div class="img_container">
+                        <div class="img_container pt-3 px-2">
                             <img class="img_size" src="<?php echo $product->image ?>" alt="<?php echo $product->image ?>">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><?php echo $product->product_name?></h4>
+                            <h5 class="card-title fw-bold"><?php echo $product->product_name?></h5>
                             <p class="card-text">
                                 <span><?php echo $product->category->icon ?></span>
                                 <?php echo $product->category->name?>
@@ -48,14 +60,40 @@
                                 Prezzo: &euro;
                                 <?php echo $product->price?>
                             </p>
-                            
+                            <?php if(get_class($product) == 'Cibo') { ?>
+                                <p class="card-text">
+                                    Peso netto: 
+                                    <?php echo $product->weight?>
+                                    g
+                                </p>
+                                <p class="card-text">
+                                    Ingredienti: 
+                                    <?php echo implode(', ', $product->ingredients) ?>
+                                </p>
+                            <?php } ?>
+                            <?php if(get_class($product) == 'Accessorio') { ?>
+                                <p class="card-text">
+                                    Materiale: 
+                                    <?php echo $product->material?>
+                                </p>
+                                <p class="card-text">
+                                    Dimensioni: 
+                                    <?php echo $product->size ?>
+                                </p>
+                            <?php } ?>
+                            <?php if(get_class($product) == 'Gioco') { ?>
+                                <p class="card-text">
+                                    Caratteristiche: 
+                                    <?php echo $product->features?>
+                                </p>
+                                <p class="card-text">
+                                    Dimensioni: 
+                                    <?php echo $product->size ?>
+                                </p>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
-                <?php
-                    /* echo '<pre>';
-                    var_dump($product); */
-                ?>
             <?php } ?>
         </div>
     </div>
